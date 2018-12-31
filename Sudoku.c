@@ -32,44 +32,6 @@ void imprimiMatriz(int sudoku[9][9]){
     }
 }
 
-// Funcao armazena posaicao onde o valor é zero na matriz
-int ArmazenaPosZero(int sudoku[9][9]){
-
-    int i, j, v1 = 0, qtdZero = 0;
-
-    //Contando os zeros na matriz
-    for(i = 0; i < 9; i++){
-        for(j = 0; j < 9; j++){
-            if(sudoku[i][j] == 0){
-                qtdZero++;
-            }
-        }
-    }
-
-    // Vetores para armazenar posição das celulas com valor 0;
-    int vetori[qtdZero], vetorj[qtdZero];
-
-    // Armazenar as posicoes nos vetores onde a celula é zero
-    for(i = 0; i < 9; i++){
-        for(j = 0; j < 9; j++){
-            if(sudoku[i][j] == 0){
-                vetori[v1] = i;
-                vetorj[v1] = j;
-
-                v1++;
-            }
-        }
-    }
-
-    // Para cada posição em que a matriz eh zero chama a função resolve sudoku
-    for(i = 0; i < qtdZero; i++){
-        resolveSudoku(sudoku, vetori[i], vetorj[i]);
-    }
-
-    //Retorna quantidade de zero na matriz
-    return qtdZero;
-}
-
 // Funçao que encontra posição de i e j e tamanho (final) para mapear um espaço 3 por 3 da matriz
 void encontraCubo(int pos, int *i, int *tamanho){
 
@@ -143,6 +105,44 @@ void resolveSudoku(int sudoku[9][9], int posi, int posj){
         if(naoTemNum == 1){
             sudoku[posi][posj] = valor;
         }
+}
+
+// Funcao armazena posaicao onde o valor é zero na matriz
+int ArmazenaPosZero(int sudoku[9][9]){
+
+    int i, j, v1 = 0, qtdZero = 0;
+
+    //Contando os zeros na matriz
+    for(i = 0; i < 9; i++){
+        for(j = 0; j < 9; j++){
+            if(sudoku[i][j] == 0){
+                qtdZero++;
+            }
+        }
+    }
+
+    // Vetores para armazenar posição das celulas com valor 0;
+    int vetori[qtdZero], vetorj[qtdZero];
+
+    // Armazenar as posicoes nos vetores onde a celula é zero
+    for(i = 0; i < 9; i++){
+        for(j = 0; j < 9; j++){
+            if(sudoku[i][j] == 0){
+                vetori[v1] = i;
+                vetorj[v1] = j;
+
+                v1++;
+            }
+        }
+    }
+
+    // Para cada posição em que a matriz eh zero chama a função resolve sudoku
+    for(i = 0; i < qtdZero; i++){
+        resolveSudoku(sudoku, vetori[i], vetorj[i]);
+    }
+
+    //Retorna quantidade de zero na matriz
+    return qtdZero;
 }
 
 //Função principal
